@@ -3,9 +3,10 @@ import styled from "styled-components/native";
 import ProductInfo from "../components/ProductInfo";
 import { Text } from "react-native";
 
+const Container = styled.ScrollView``;
+
 const ProductInfoView = styled.View`
   flex-direction: row;
-  border: 1px;
 `;
 
 const EditButton = styled.Pressable`
@@ -21,8 +22,13 @@ const infos = [
     id: 1,
     size: 2,
     phone: "010-1234-1234",
-    address: "경기도 용인시 수지구",
+    address:
+      "경기도 용인시 수지구 동천동123213423512341242141245124124235125125",
     balance: 250000,
+    site: "네이버",
+    createAt: "2022-01-15",
+    updateAt: "2022-01-15",
+    status: "배송전",
   },
   {
     id: 2,
@@ -42,16 +48,13 @@ const infos = [
 
 const Admin = () => {
   return (
-    <>
+    <Container>
       {infos.map((product) => (
-        <ProductInfoView>
-          <ProductInfo product={product}></ProductInfo>
-          <EditButton onPress={() => alert("Not yet")}>
-            <StyledText>정보 변경</StyledText>
-          </EditButton>
-        </ProductInfoView>
+        // <ProductInfoView>
+        <ProductInfo product={product}></ProductInfo>
+        // </ProductInfoView>
       ))}
-    </>
+    </Container>
   );
 };
 

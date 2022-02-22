@@ -1,36 +1,56 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components/native";
 
 const Container = styled.View`
   flex-direction: row;
+  border-radius: 5px;
+  box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
+  margin: 5%;
+  flex:1
+  border-width: 1px;
+  border-color: gray;
+  background-color: #ffffff;
 `;
 
-const InfoBox = styled.View`
+const TitleBox = styled.View`
   border-right-width: 1px;
+  flex: 2.5;
+`;
+const InfoBox = styled.View`
+  flex: 7.5;
 `;
 
-const Info = styled.Text`
+const Title = styled.Text`
   padding: 10px;
 `;
 
 const ProductInfo = ({ product }) => {
+  console.log(Object.keys(product));
+  console.log(Object.values(product));
   return (
     <Container>
-      <InfoBox style={{ width: "10%" }}>
-        <Info>ID: {product.id}</Info>
-      </InfoBox>
-      <InfoBox style={{ width: "10%" }}>
-        <Info>Size: {product.size}</Info>
-      </InfoBox>
+      <TitleBox>
+        <Title>ID</Title>
+        <Title>Size</Title>
+        <Title>Phone</Title>
+        <Title>balance</Title>
+        <Title>Site</Title>
+        <Title>CreateAt</Title>
+        <Title>UpdateAt</Title>
+        <Title>Status</Title>
+        <Title>Address</Title>
+      </TitleBox>
 
-      <InfoBox style={{ width: "20%" }}>
-        <Info>Phone: {product.phone}</Info>
-      </InfoBox>
-      <InfoBox style={{ width: "30%" }}>
-        <Info>Address:{product.address}</Info>
-      </InfoBox>
-      <InfoBox style={{ width: "15%" }}>
-        <Info>잔금: {product.balance}</Info>
+      <InfoBox>
+        <Title>{product.id}</Title>
+        <Title>{product.size}</Title>
+        <Title>{product.phone}</Title>
+        <Title>{product.balance}</Title>
+        <Title>{product.site}</Title>
+        <Title>{product.createAt}</Title>
+        <Title>{product.updateAt}</Title>
+        <Title>{product.status}</Title>
+        <Title>{product.address}</Title>
       </InfoBox>
     </Container>
   );
