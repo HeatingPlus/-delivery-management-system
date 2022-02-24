@@ -1,20 +1,36 @@
 import React from "react";
 import styled from "styled-components/native";
 import ProductInfo from "../components/ProductInfo";
-import { Text } from "react-native";
+import { Alert, Text } from "react-native";
 
-const Container = styled.ScrollView``;
+const Container = styled.ScrollView`
+  flex: 12;
+`;
 
 const ProductInfoView = styled.View`
   flex-direction: row;
 `;
 
 const EditButton = styled.Pressable`
+  flex: 1;
   background-color: #f0f;
+  align-items: center;
+  justify-content: center;
 `;
 
 const StyledText = styled.Text`
   padding: 10px;
+`;
+
+const TopView = styled.View`
+  flex: 1;
+  background-color: blue;
+`;
+
+const BottomViw = styled.View`
+  flex: 1;
+  background-color: red;
+  flex-direction: row;
 `;
 
 const infos = [
@@ -46,15 +62,28 @@ const infos = [
   },
 ];
 
-const Admin = () => {
+const Admin = ({ navigation }) => {
   return (
-    <Container>
-      {infos.map((product) => (
-        // <ProductInfoView>
-        <ProductInfo product={product}></ProductInfo>
-        // </ProductInfoView>
-      ))}
-    </Container>
+    <>
+      <TopView>
+        <StyledText>정렬 추가될 예정</StyledText>
+      </TopView>
+      <Container>
+        {infos.map((product) => (
+          // <ProductInfoView>
+          <ProductInfo product={product}></ProductInfo>
+          // </ProductInfoView>
+        ))}
+      </Container>
+      <BottomViw>
+        <EditButton>
+          <StyledText>뭐넣지</StyledText>
+        </EditButton>
+        <EditButton onPress={() => navigation.navigate("상품 정보 추가하기")}>
+          <StyledText>상품 정보 추가하기</StyledText>
+        </EditButton>
+      </BottomViw>
+    </>
   );
 };
 
