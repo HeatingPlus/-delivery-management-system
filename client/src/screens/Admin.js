@@ -13,7 +13,7 @@ const ProductInfoView = styled.View`
 
 const EditButton = styled.Pressable`
   flex: 1;
-  background-color: #f0f;
+  background-color: #3498db;
   align-items: center;
   justify-content: center;
 `;
