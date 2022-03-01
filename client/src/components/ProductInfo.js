@@ -42,10 +42,10 @@ const ProductInfo = ({ product }) => {
       </TitleBox>
 
       <InfoBox>
-        <Title>{product.id}</Title>
+        <Title>{product.orderIdx}</Title>
         <Title>{product.size}</Title>
-        <Title>{product.phone}</Title>
-        <Title>{product.balance}</Title>
+        <Title>{product.phoneNumber}</Title>
+        <Title>{product.cost}</Title>
         <Title>{product.site}</Title>
         <Title>{product.createAt}</Title>
         <Title>{product.updateAt}</Title>
