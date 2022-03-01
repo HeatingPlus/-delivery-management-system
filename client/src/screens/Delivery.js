@@ -1,57 +1,69 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
 import ProductInfo from "../components/ProductInfo";
+import { Alert, Text } from "react-native";
+import axios from "axios";
 
-const infos = [
-  {
-    id: 1,
-    size: 2,
-    phone: "010-1234-1234",
-    address: "경기도 용인시 수지구",
-    balance: 250000,
-  },
-  {
-    id: 2,
-    size: 4,
-    phone: "010-1234-1234",
-    address: "경기도 용인시 수지구",
-    balance: 300000,
-  },
-  {
-    id: 3,
-    size: 1,
-    phone: "010-1234-1234",
-    address: "경기도 용인시 수지구",
-    balance: 100000,
-  },
-];
+const Container = styled.ScrollView`
+  flex: 12;
+`;
 
 const ProductInfoView = styled.View`
   flex-direction: row;
-  border: 1px;
 `;
 
 const EditButton = styled.Pressable`
-  background-color: #f0f;
+  flex: 1;
+  background-color: #3498db;
+  align-items: center;
+  justify-content: center;
 `;
 
 const StyledText = styled.Text`
   padding: 10px;
 `;
 
-const Delivery = () => {
+const TopView = styled.View`
+  flex: 1;
+  background-color: blue;
+`;
+
+const BottomViw = styled.View`
+  flex: 1;
+  background-color: red;
+  flex-direction: row;
+`;
+
+const Admin = ({ navigation }) => {
+  const [infos, setInfos] = useState([]);
+
+  useEffect(async () => {
+    const response = await axios.get("http://52.78.220.181:3000/admin");
+    setInfos(response.data);
+  }, []);
+
   return (
     <>
-      {infos.map((product) => (
-        <ProductInfoView>
-          <ProductInfo product={product}></ProductInfo>
-          <EditButton onPress={() => alert("Not Yet")}>
-            <StyledText>정보 변경</StyledText>
-          </EditButton>
-        </ProductInfoView>
-      ))}
+      <TopView>
+        <StyledText>정렬 추가될 예정</StyledText>
+      </TopView>
+      <Container>
+        {infos.map((product) => (
+          // <ProductInfoView>
+          <ProductInfo product={product} key={product.orderIdx}></ProductInfo>
+          // </ProductInfoView>
+        ))}
+      </Container>
+      <BottomViw>
+        <EditButton>
+          <StyledText>뭐넣지</StyledText>
+        </EditButton>
+        <EditButton onPress={() => navigation.navigate("상품 정보 추가하기")}>
+          <StyledText>상품 정보 추가하기</StyledText>
+        </EditButton>
+      </BottomViw>
     </>
   );
 };
 
-export default Delivery;
+export default Admin;
