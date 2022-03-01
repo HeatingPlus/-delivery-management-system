@@ -71,7 +71,7 @@ const Admin = ({ navigation }) => {
       <Container>
         {infos.map((product) => (
           // <ProductInfoView>
-          <ProductInfo product={product}></ProductInfo>
+          <ProductInfo product={product} key={product.id}></ProductInfo>
           // </ProductInfoView>
         ))}
       </Container>
