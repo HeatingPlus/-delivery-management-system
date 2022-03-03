@@ -20,9 +20,8 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const admin = require("./src/controller/AdminCT");
-
-app.use("/admin", admin);
+// 도메인 추가
+require('./src/app/Admin/adminRoute')(app);
 
 const port = process.env.SERVER_PORT;
 app.listen(port, () => {
