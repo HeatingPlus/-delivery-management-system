@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 import ProductInfo from "../components/ProductInfo";
 import { Alert, Text } from "react-native";
 import axios from "axios";
+import RNPickerSelect from "react-native-picker-select";
 
 const Container = styled.ScrollView`
   flex: 12;
@@ -25,7 +26,9 @@ const StyledText = styled.Text`
 
 const TopView = styled.View`
   flex: 1;
-  background-color: blue;
+
+  align-items: center;
+  justify-content: center;
 `;
 
 const BottomViw = styled.View`
@@ -36,17 +39,33 @@ const BottomViw = styled.View`
 
 const Admin = ({ navigation }) => {
   const [infos, setInfos] = useState([]);
+  const [category, setCategory] = useState(1);
 
   useEffect(async () => {
-    const response = await axios.get("http://13.125.141.27:3000/admin");
+    const response = await axios.get("http://13.125.141.27:3000/admin", {
+      params: {
+        category: category,
+      },
+    });
 
+    console.log(response.data);
     setInfos(response.data);
-  }, []);
+  }, [category]);
 
   return (
     <>
       <TopView>
-        <StyledText>정렬 추가될 예정 test</StyledText>
+        <RNPickerSelect
+          selectedValue={category}
+          placeholder={{}}
+          onValueChange={(value) => setCategory(value)}
+          items={[
+            { label: "배송 준비중만 보기", value: 1 },
+            { label: "배송중인것만 보기", value: 2 },
+            { label: "배송완료만 보기", value: 3 },
+            { label: "모두 보기", value: 4 },
+          ]}
+        />
       </TopView>
       <Container>
         {infos.map((product) => (
