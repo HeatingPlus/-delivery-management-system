@@ -47,13 +47,14 @@ flex :2
 
 const title = ["Size", "Phone", "잔금", "주문 사이트", "Status", "Address"];
 
-const CreateInfo = ({ navigation }) => {
-  const [size, setSize] = useState(null);
-  const [phone, setPhone] = useState(null);
-  const [cost, setCost] = useState(null);
-  const [site, setSite] = useState(null);
-  const [status, setStatus] = useState(null);
-  const [address, setAddress] = useState(null);
+const CreateInfo = ({ route, navigation }) => {
+  const product = route.params.product;
+  const [size, setSize] = useState(product.size);
+  const [phone, setPhone] = useState(product.phoneNumber);
+  const [cost, setCost] = useState(product.cost);
+  const [site, setSite] = useState(product.site);
+  const [status, setStatus] = useState(product.status);
+  const [address, setAddress] = useState(product.address);
 
   const submitPress = async () => {
     const data = {
@@ -85,7 +86,7 @@ const CreateInfo = ({ navigation }) => {
           </TitleBox>
           <InputBox
             onChangeText={(text) => setSize(text)}
-            placeholder="size"
+            value={size}
           ></InputBox>
         </TitleInputBox>
 
@@ -95,7 +96,7 @@ const CreateInfo = ({ navigation }) => {
           </TitleBox>
           <InputBox
             onChangeText={(text) => setPhone(text)}
-            placeholder="phone"
+            value={phone}
           ></InputBox>
         </TitleInputBox>
 
@@ -103,34 +104,46 @@ const CreateInfo = ({ navigation }) => {
           <TitleBox>
             <TitleText>잔금</TitleText>
           </TitleBox>
-          <InputBox onChangeText={(text) => setCost(text)}></InputBox>
+          <InputBox
+            onChangeText={(text) => setCost(text)}
+            value={cost}
+          ></InputBox>
         </TitleInputBox>
 
         <TitleInputBox>
           <TitleBox>
             <TitleText>주문사이트</TitleText>
           </TitleBox>
-          <InputBox onChangeText={(text) => setSite(text)}></InputBox>
+          <InputBox
+            onChangeText={(text) => setSite(text)}
+            value={site}
+          ></InputBox>
         </TitleInputBox>
 
         <TitleInputBox>
           <TitleBox>
             <TitleText>상태</TitleText>
           </TitleBox>
-          <InputBox onChangeText={(text) => setStatus(text)}></InputBox>
+          <InputBox
+            onChangeText={(text) => setStatus(text)}
+            value={status}
+          ></InputBox>
         </TitleInputBox>
 
         <TitleInputBox>
           <TitleBox>
             <TitleText>주소</TitleText>
           </TitleBox>
-          <InputBox onChangeText={(text) => setAddress(text)}></InputBox>
+          <InputBox
+            onChangeText={(text) => setAddress(text)}
+            value={address}
+          ></InputBox>
         </TitleInputBox>
       </TitleInputContiner>
 
       <BottomContainer>
         <SubmitButton onPress={async () => submitPress()}>
-          <Text>등록하기</Text>
+          <Text>수정하기</Text>
         </SubmitButton>
       </BottomContainer>
     </>
