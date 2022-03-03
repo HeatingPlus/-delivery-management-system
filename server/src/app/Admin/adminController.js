@@ -12,3 +12,17 @@ const {emit} = require("nodemon");
      const orderListResult = await adminProvider.retrieveOrderList();
      return res.send(response(baseResponse.SUCCESS, orderListResult));
 };
+
+/*
+주문정보 수정 API
+[PATCH] /app/order/:orderIdx
+*/
+exports.updateOrderList = async function (req, res) {
+    const {size, phone, cost, site, status, address} = req.body;
+    const orderIdx = req.params.orderIdx;
+
+    const orderInfo = [size, phone, cost, site, status, address, orderIdx];
+
+    const updateOrderServiceResult = await adminService.updateOrderService(orderInfo);
+    return res.send(updateOrderServiceResult);
+}

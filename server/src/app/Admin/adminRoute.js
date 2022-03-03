@@ -17,7 +17,10 @@ const corsOptions = {
 module.exports = function (app) {
     const admin = require('./adminController');
 
-    // 회원 조회 API
+    // 주문정보 조회 API
     app.get('/app/order/list', admin.getOrderList);
+
+    // 주문정보 수정 API
+    app.patch('/app/order/:orderIdx', admin.updateOrderList);
 
 };

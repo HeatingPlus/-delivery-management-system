@@ -22,3 +22,17 @@ exports.editUser = async function (userIdx, nickname) {
         return errResponse(baseResponse.DB_ERROR);
     }
 }
+
+exports.updateOrderService = async function (orderInfo) {
+    try {
+        console.log(orderInfo)
+        const connection = await pool.getConnection(async (conn) => conn);
+        const updateOrderDaoResult = await adminDao.updateOrderDao(connection, orderInfo);
+        connection.release();
+
+        return response(baseResponse.SUCCESS);
+    } catch (err) {
+        console.log(err)
+        return errResponse(baseResponse.DB_ERROR);
+    }
+}
