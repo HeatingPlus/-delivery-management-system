@@ -66,10 +66,13 @@ const CreateInfo = ({ route, navigation }) => {
       address: address,
     };
 
-    const responce = await axios.post("http://13.125.141.27:3000/admin", data);
+    const responce = await axios.patch(
+      "http://13.125.141.27:3000/app/order/`+product.orderIdx`",
+      data
+    );
 
     if (responce.status === 201) {
-      Alert.alert("등록되었습니다.");
+      Alert.alert("수정되었습니다.");
       navigation.navigate("Admin");
     } else {
       Alert.alert("에러가 발생하였습니다.");
