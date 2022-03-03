@@ -42,14 +42,19 @@ const Admin = ({ navigation }) => {
   const [category, setCategory] = useState(1);
 
   useEffect(async () => {
-    const response = await axios.get("http://13.125.141.27:3000/admin", {
-      params: {
-        category: category,
-      },
-    });
+    const response = await axios.get(
+      "http://13.125.141.27:3000/app/order/list",
+      {
+        params: {
+          category: category,
+        },
+      }
+    );
 
-    console.log(response.data);
-    setInfos(response.data);
+    setInfos(response.data.result);
+
+    // const result = response.data;
+    // console.log(result);
   }, [category]);
 
   return (
@@ -68,15 +73,17 @@ const Admin = ({ navigation }) => {
         />
       </TopView>
       <Container>
-        {infos.map((product) => (
-          // <ProductInfoView>
-          <ProductInfo
-            product={product}
-            navigation={navigation}
-            key={product.orderIdx}
-          ></ProductInfo>
-          // </ProductInfoView>
-        ))}
+        {infos
+          ? infos.map((product) => (
+              // <ProductInfoView>
+              <ProductInfo
+                product={product}
+                navigation={navigation}
+                key={product.orderIdx}
+              ></ProductInfo>
+              // </ProductInfoView>
+            ))
+          : console.log("no")}
       </Container>
       <BottomViw>
         <EditButton>

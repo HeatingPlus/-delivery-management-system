@@ -65,7 +65,10 @@ const CreateInfo = ({ navigation }) => {
       address: address,
     };
 
-    const responce = await axios.post("http://13.125.141.27:3000/admin", data);
+    const responce = await axios.post(
+      "http://13.125.141.27:3000/app/order/information",
+      data
+    );
 
     if (responce.status === 201) {
       Alert.alert("등록되었습니다.");

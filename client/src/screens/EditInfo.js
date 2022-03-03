@@ -58,7 +58,6 @@ const CreateInfo = ({ route, navigation }) => {
 
   const submitPress = async () => {
     const data = {
-      id: product.orderIdx,
       size: size,
       phone: phone,
       cost: cost,
@@ -67,7 +66,10 @@ const CreateInfo = ({ route, navigation }) => {
       address: address,
     };
 
-    const responce = await axios.patch("http://13.125.141.27:3000/admin", data);
+    const responce = await axios.patch(
+      "http://13.125.141.27:3000/app/order/`+product.orderIdx`",
+      data
+    );
 
     if (responce.status === 201) {
       Alert.alert("수정되었습니다.");
