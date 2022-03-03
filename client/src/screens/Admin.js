@@ -38,19 +38,24 @@ const Admin = ({ navigation }) => {
   const [infos, setInfos] = useState([]);
 
   useEffect(async () => {
-    const response = await axios.get("http://52.78.220.181:3000/admin");
+    const response = await axios.get("http://13.125.141.27:3000/admin");
+
     setInfos(response.data);
   }, []);
 
   return (
     <>
       <TopView>
-        <StyledText>정렬 추가될 예정</StyledText>
+        <StyledText>정렬 추가될 예정 test</StyledText>
       </TopView>
       <Container>
         {infos.map((product) => (
           // <ProductInfoView>
-          <ProductInfo product={product} key={product.orderIdx}></ProductInfo>
+          <ProductInfo
+            product={product}
+            navigation={navigation}
+            key={product.orderIdx}
+          ></ProductInfo>
           // </ProductInfoView>
         ))}
       </Container>

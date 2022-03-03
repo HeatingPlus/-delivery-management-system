@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
+import { Alert } from "react-native";
 import styled from "styled-components/native";
 
-const Container = styled.View`
+const Container = styled.Pressable`
   flex-direction: row;
   border-radius: 5px;
   box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
@@ -24,11 +25,13 @@ const Title = styled.Text`
   padding: 10px;
 `;
 
-const ProductInfo = ({ product }) => {
-  console.log(Object.keys(product));
-  console.log(Object.values(product));
+const ProductInfo = ({ product, navigation }) => {
   return (
-    <Container>
+    <Container
+      onPress={() =>
+        navigation.navigate("상품 정보 수정하기", { product: product })
+      }
+    >
       <TitleBox>
         <Title>ID</Title>
         <Title>Size</Title>

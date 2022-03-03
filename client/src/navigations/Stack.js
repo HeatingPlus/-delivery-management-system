@@ -7,6 +7,7 @@ import Main from "../screens/Main";
 import Admin from "../screens/Admin";
 import Delivery from "../screens/Delivery";
 import CreateInfo from "../screens/CreateInfo";
+import EditInfo from "../screens/EditInfo";
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ const StackNaviation = () => {
       <Stack.Screen name="Admin" component={Admin} />
       <Stack.Screen name="Delivery" component={Delivery} />
       <Stack.Screen name="상품 정보 추가하기" component={CreateInfo} />
+      <Stack.Screen name="상품 정보 수정하기" component={EditInfo} />
     </Stack.Navigator>
   );
 };
