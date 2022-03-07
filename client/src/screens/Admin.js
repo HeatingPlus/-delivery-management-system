@@ -4,6 +4,7 @@ import ProductInfo from "../components/ProductInfo";
 import { Alert, Text } from "react-native";
 import axios from "axios";
 import RNPickerSelect from "react-native-picker-select";
+import DropDownPicker from "react-native-dropdown-picker";
 
 const Container = styled.ScrollView`
   flex: 12;
@@ -39,7 +40,7 @@ const BottomViw = styled.View`
 
 const Admin = ({ navigation }) => {
   const [infos, setInfos] = useState([]);
-  const [category, setCategory] = useState(1);
+  // const [category, setCategory] = useState(1);
 
   useEffect(async () => {
     const response = await axios.get(
@@ -57,10 +58,19 @@ const Admin = ({ navigation }) => {
     // console.log(result);
   }, [category]);
 
+  const [open, setOpen] = useState(false);
+  const [category, setCategory] = useState(1);
+  const [items, setItems] = useState([
+    { label: "배송 준비중만 보기", value: 1 },
+    { label: "배송중인것만 보기", value: 2 },
+    { label: "배송완료만 보기", value: 3 },
+    { label: "모두 보기", value: 4 },
+  ]);
+
   return (
     <>
       <TopView>
-        <RNPickerSelect
+        {/* <RNPickerSelect
           selectedValue={category}
           placeholder={{}}
           onValueChange={(value) => setCategory(value)}
@@ -70,6 +80,19 @@ const Admin = ({ navigation }) => {
             { label: "배송완료만 보기", value: 3 },
             { label: "모두 보기", value: 4 },
           ]}
+        /> */}
+        {/* 이거 왜 안됨? ㅜ */}
+        <DropDownPicker
+          open={open}
+          value={category}
+          items={items}
+          setOpen={setOpen}
+          setValue={setCategory}
+          setItems={setItems}
+          onOpen={() => setInfos([])}
+          onClose={() => console.log("close")}
+          onChangeValue={(value) => console.log(value)}
+          onChangeItem={(item) => setCategory(item.value)}
         />
       </TopView>
       <Container>

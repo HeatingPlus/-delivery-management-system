@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 
 import { TextInput, StyleSheet, Text, Alert } from "react-native";
 import axios from "axios";
+import RNPickerSelect from "react-native-picker-select";
 
 const Conatiner = styled.View`
     background-color=green;
@@ -52,7 +53,7 @@ const CreateInfo = ({ navigation }) => {
   const [phone, setPhone] = useState(null);
   const [cost, setCost] = useState(null);
   const [site, setSite] = useState(null);
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState(1);
   const [address, setAddress] = useState(null);
 
   const submitPress = async () => {
@@ -120,7 +121,17 @@ const CreateInfo = ({ navigation }) => {
           <TitleBox>
             <TitleText>상태</TitleText>
           </TitleBox>
-          <InputBox onChangeText={(text) => setStatus(text)}></InputBox>
+
+          <RNPickerSelect
+            selectedValue={status}
+            placeholder={{}}
+            onValueChange={(value) => setStatus(value)}
+            items={[
+              { label: "배송 준비중", value: 1 },
+              { label: "배송중", value: 2 },
+              { label: "배송완료", value: 3 },
+            ]}
+          />
         </TitleInputBox>
 
         <TitleInputBox>
