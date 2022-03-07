@@ -67,11 +67,12 @@ const CreateInfo = ({ route, navigation }) => {
     };
 
     const responce = await axios.patch(
-      "http://13.125.141.27:3000/app/order/`+product.orderIdx`",
+      "http://13.125.141.27:3000/app/order/" + product.orderIdx,
       data
     );
 
-    if (responce.status === 201) {
+    console.log(responce.data);
+    if (responce.status === 200) {
       Alert.alert("수정되었습니다.");
       navigation.navigate("Admin");
     } else {
