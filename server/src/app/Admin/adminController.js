@@ -7,10 +7,16 @@ const {emit} = require("nodemon");
 
 /** 주문정보 조회 API
  * [GET] /app/order/list
+ * Path Variable: category
  */
  exports.getOrderList = async function (req, res) {
-     const orderListResult = await adminProvider.retrieveOrderList();
-     return res.send(response(baseResponse.SUCCESS, orderListResult));
+
+    const category = req.params.category;
+
+    if (!category) return res.send(errResponse(baseResponse.CATEGORY_EMPTY));
+
+    const orderListResult = await adminProvider.retrieveOrderList(category);
+    return res.send(response(baseResponse.SUCCESS, orderListResult));
 };
 
 /*
@@ -26,3 +32,4 @@ exports.updateOrderList = async function (req, res) {
     const updateOrderServiceResult = await adminService.updateOrderService(orderInfo);
     return res.send(updateOrderServiceResult);
 }
+

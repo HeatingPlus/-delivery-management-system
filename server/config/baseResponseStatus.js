@@ -8,7 +8,7 @@ module.exports = {
     TOKEN_VERIFICATION_SUCCESS : { "isSuccess": true, "code": 1001, "message":"JWT 토큰 검증 성공" },
 
     //Request error
-    MYPAGE_NICKNAME_LENGTH : { "isSuccess": false,"code": 2055,"message":"닉네임은 최대 20자리를 입력해주세요." },
+    CATEGORY_EMPTY : { "isSuccess": false,"code": 2001,"message":"카테고리가 입력되지 않았습니다." },
 
     // Response error
     SIGNUP_REDUNDANT_EMAIL : { "isSuccess": false, "code": 3001, "message":"중복된 이메일입니다." },

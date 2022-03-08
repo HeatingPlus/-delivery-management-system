@@ -1,12 +1,13 @@
 const {pool} = require("../../../config/database");
 
 // 주문정보 리스트 조회
-async function selectOrderList(connection) {
+async function selectOrderList(connection, category) {
     const selectOrderListQuery = `
         SELECT *
-        FROM Orders;
+        FROM Orders
+        WHERE status = ?;
     `;
-    const [orderRows] = await connection.query(selectOrderListQuery);
+    const [orderRows] = await connection.query(selectOrderListQuery, category);
     return orderRows;
 }
 
